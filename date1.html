@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            color: #d63384;
+            padding: 50px;
+            overflow: hidden; /* Prevent scrollbars from confetti */
+        }
+        h1 {
+            font-size: 2em;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #yesBtn {
+            background-color: #ff69b4;
+            color: white;
+        }
+        #noBtn {
+            background-color: #ccc;
+            color: black;
+            position: relative;
+        }
+        #successText {
+            display: none;
+            font-size: 3em; /* Made bigger */
+            font-weight: bold;
+            color: #ff1493;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        #valentineImage {
+            display: none;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff69b4;
+            animation: fall 3s linear infinite;
+            display: none;
+        }
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #ffd700;
+            border-radius: 50%;
+            animation: burst 2s ease-out infinite;
+            display: none;
+        }
+        @keyframes fall {
+            0% { top: -10px; opacity: 1; }
+            100% { top: 100vh; opacity: 0; }
+        }
+        @keyframes burst {
+            0% { transform: scale(0); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.8; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my Valentine and go on a date with me? 💖</h1>
+    <div class="buttons">
+        <button id="yesBtn">Yes!</button>
+        <button id="noBtn">No</button>
+    </div>
+    <p id="successText">LEZGO BABY! 🎉</p> <!-- Moved above the image -->
+    <img id="valentineImage" src="Kekok.png" alt="Valentine Surprise">
+
+    <!-- Confetti and Fireworks Elements -->
+    <div class="confetti" id="confetti1"></div>
+    <div class="confetti" id="confetti2"></div>
+    <div class="confetti" id="confetti3"></div>
+    <div class="confetti" id="confetti4"></div>
+    <div class="confetti" id="confetti5"></div>
+    <div class="firework" id="firework1"></div>
+    <div class="firework" id="firework2"></div>
+    <div class="firework" id="firework3"></div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const valentineImage = document.getElementById('valentineImage');
+        const successText = document.getElementById('successText');
+        const confettis = document.querySelectorAll('.confetti');
+        const fireworks = document.querySelectorAll('.firework');
+
+        // Yes button: Show the text, image, and start confetti/fireworks
+        yesBtn.addEventListener('click', () => {
+            document.querySelector('.buttons').style.display = 'none';
+            successText.style.display = 'block';
+            valentineImage.style.display = 'block';
+
+            // Start confetti animation
+            confettis.forEach((confetti, index) => {
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.display = 'block';
+                confetti.style.animationDelay = `${index * 0.5}s`;
+            });
+
+            // Start fireworks animation
+            fireworks.forEach((firework, index) => {
+                firework.style.left = `${Math.random() * 100}%`;
+                firework.style.top = `${Math.random() * 50}%`;
+                firework.style.display = 'block';
+                firework.style.animationDelay = `${index * 0.3}s`;
+            });
+        });
+
+        // No button: Make it run away on hover
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 100);
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        });
+    </script>
+</body>
+</html>
